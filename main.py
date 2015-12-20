@@ -12,9 +12,9 @@ import time
 
 urls = (
     '/airticket.cgi', 'AirTicket',
-    '/pickservice.cgi', 'PickService'
-    '/channel.cgi', 'Channel'
-    '/channelrelation.cgi', 'ChannelRelation'
+    '/pickservice.cgi', 'PickService',
+    '/channel.cgi', 'Channel',
+    '/channelrelation.cgi', 'ChannelRelation',
 )
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -157,7 +157,7 @@ class ChannelRelationDB:
         return self.db.query('replace t_channel_relation(channel_name, shop_product_id, channel_relation_info) values ("' +  MySQLdb.escape_string(channel_name) + '",' + MySQLdb.escape_string(product_id) + ',"' + MySQLdb.escape_string(channel_relation_info) + '")')
 
     def delChannelRelation(self, channel_name, product_id):
-        return self.db.query('delete from t_channel_relation where channel_name="' +  MySQLdb.escape_string(channel_name) + '", and shop_procuct_id=' + product_id)
+        return self.db.query('delete from t_channel_relation where channel_name="' +  MySQLdb.escape_string(channel_name) + '" and shop_product_id=' + product_id)
 
     def getChannelRelation(self):
         return self.db.query('select channel_relation_info from t_channel_relation where LASTTIME>=' +  str(time.time() - 356*86400))
